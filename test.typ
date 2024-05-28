@@ -1,8 +1,9 @@
-#show math.equation: it => [
-  hi this is test math equation
-]
+// #show regex("\p{script=Han}"):it=>[
+//   #set text(font: ("Times New Roman","DFKai-SB"))
+//   #text(weight: "bold")[#it]
+// ]
 
+#set text(font: ("Times New Roman","DFKai-SB"))
 
-$
-  a in b ,x y
-$
+test test 
+哈多

@@ -1,14 +1,28 @@
 #import "@preview/ctheorems:1.1.2": *
-#import "@preview/cuti:0.2.1": show-cn-fakebold
-#show: show-cn-fakebold
+#import "@preview/cuti:0.2.1": show-fakebold
 
 
-#let theorem = thmbox("thm","Theorem")
+
+#let theorem = thmbox(
+	"thm",
+	"Theorem",
+	padding: (y: 0em))
+
+#let definition = thmbox(
+	"definition",
+	"Definition",
+	fill: rgb("e8e8fe"),
+	padding: (y: 0em))
+
 #let proof = thmproof("proof","Proof")
-#let example = thmbox("example","Example").with(numbering: none)
-#let definition = thmbox("definition","Definition",
-						fill: rgb("e8e8fe"))
 
+#let example = thmplain("example","Example",fill: rgb("0078d4")).with(
+	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
+	numbering: none)
+
+#let remark = thmplain("remark","Remark",fill: rgb("0078d4")).with(
+	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
+	numbering: none)
 
 
 #let textb(it) = [
@@ -38,12 +52,16 @@
 
 #let conf(_title,_author,doc) = {
   
+	
 	set document(title: _title, author: _author)
   
 	state("title").update(_title)
 	state("author").update(_author)
 
+	
+	show: show-fakebold.with(reg-exp: "\p{script=Han}")
 	show: thmrules
+	
 	set page(
 		paper: "a4",
 		number-align: center,
@@ -59,22 +77,16 @@
 	]
 	
 	show math.equation.where(block: true): e => [
-		// #set block(fill: lime)
-  	#block(width: 100%, inset: 2pt,spacing: 1pt)[
+		#set block(fill: lime)
+  	#block(width: 100%, inset: 0.3em)[
       #set align(center)
+			#set par(leading: 1em)
+			#set text(font: "Cambria Math")
       #e
   	]
 	]
 
-	show enum.item: it=>[
-		// #set block(fill: red)
-		#block(width: 100%,spacing: 0.4em,inset: 2pt)[
-			#set align(left)
-			#show par: set block(spacing: 0.4em)
-			#it
-		]
-	]
-
+	
 
 	doc
 }
