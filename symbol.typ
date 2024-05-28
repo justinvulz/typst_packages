@@ -1,1 +1,1 @@
-#let negspace = [#h(-0.01em)]
+#let negspace = [#h(-0.005em)]
