@@ -104,7 +104,8 @@
       #set align(center)
 			#set par(leading: 1em)
       #e
-  	]
+	
+		]
 	]
 
 	
