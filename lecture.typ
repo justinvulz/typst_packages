@@ -49,6 +49,15 @@
 	)
 }
 
+#let listal = {
+	grid(
+	 	columns: (0em, auto),
+  	align: bottom,
+  	hide[一], [•]
+	)
+}
+
+
 #let makeTitle = [
 
 	#let title = context {
@@ -109,6 +118,7 @@
 	]
 
 	
+	set list(marker: listal)
 	
 	doc
 }
