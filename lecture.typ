@@ -120,6 +120,8 @@
 	
 	set list(marker: listal)
 	
+	set enum(numbering: al("1."))
+
 	doc
 }
 
