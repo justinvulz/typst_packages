@@ -4,6 +4,7 @@
 
 
 
+
 #let theorem = thmbox(
 	"thm",
 	"Theorem",
@@ -57,6 +58,8 @@
 	)
 }
 
+#let cir = $circle.stroked.tiny$
+
 
 #let makeTitle = [
 
@@ -103,6 +106,7 @@
 	set heading(numbering: "1.")
 	show heading: it =>[
 	  #text(weight: "bold")[#it]
+		#v(0.65em)
 	]
 	
 	show math.equation: set text(weight: "extralight")
