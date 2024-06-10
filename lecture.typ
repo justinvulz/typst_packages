@@ -115,12 +115,13 @@
 		// #set block(fill: lime)
   	#block(width: 100%, inset: 0.3em)[
       #set align(center)
-			#set par(leading: 1em)
+			#set par(leading: 0.65em)
       #e
 	
 		]
 	]
 
+	set text(size: 11pt)
 	
 	set list(marker: listal)
 	

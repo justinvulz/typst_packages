@@ -5,5 +5,7 @@
 
 #set text(font: ("Times New Roman","DFKai-SB"))
 
-test test 
-哈多
+#let f(n)  ={n}
+#let t = (f)(3)
+
+#t
