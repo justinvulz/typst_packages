@@ -3,7 +3,7 @@
 #import "./symbol.typ": *
 
 
-
+#let st = $space s.t. space $
 
 #let theorem = thmbox(
 	"thm",
