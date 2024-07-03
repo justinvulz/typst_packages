@@ -29,6 +29,13 @@
 	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
 	numbering: none)
 
+#let lemma = thmbox(
+  "le",
+  "Lemma",
+  fill: rgb("e8e8f8"),
+    // stroke: black,
+  base_level: 1,
+  padding: (y: 0em))
 
 #let textb(it) = [
 	#set text(font: ("Times New Roman","DFKai-SB"))
