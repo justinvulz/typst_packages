@@ -4,7 +4,12 @@
 
 
 #let st = $space s.t. space $
-
+#let exercise = thmbox(
+  "exercise",
+  "Exercise",
+  stroke: black + 1pt,
+  base: none,           
+).with(numbering: "I") 
 #let theorem = thmbox(
 	"thm",
 	"Theorem",
