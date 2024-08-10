@@ -1,6 +1,10 @@
+#import "@preview/cetz:0.2.2"
+#import "@preview/fletcher:0.4.5" as fletcher: diagram,node,edge
+#import fletcher.shapes:circle
 
+#let margin_size = 2cm
+#let body_font_size = 30pt
 
-#let marign_size = 2cm
 
 #let conf(
   title,
@@ -15,14 +19,20 @@
     paper: "a0",
     margin: 0pt,
   )
-  set text(size:24pt)
-  show par: set block(spacing: 1.5em)
-  show block: set block(spacing: 0pt)
+
+
+  set text(size:body_font_size)
+  show stack: set block(spacing: 2em)
+  show grid: set block(spacing: 2em)
+  show par: set block(spacing: 1em)
+  show block: set block(spacing: 1em)
+  show figure: set block(spacing: 2em) 
+  show list: set block(spacing: 1em)
   // title
   block(
     width: 100%,
     fill: main_color, 
-    inset:marign_size,
+    inset:margin_size,
 
   )[
     #align(center+horizon)[
@@ -48,10 +58,20 @@
     }
   ]
   // block for heading
-  show heading: h => {
+  show heading.where(level: 1): h => {
     align(center)[
       #block(width: 100%,fill: main_color,inset: 0.45em)[
         #text(size: 36pt,fill:white)[
+          *#h*
+        ]
+      ]
+
+    ]
+  }
+  show heading.where(level:2): h => {
+    align(center)[
+      #block(width: 100%,fill: main_color,inset: 0.45em)[
+        #text(size: 30pt,fill:white)[
           *#h*
         ]
       ]
@@ -68,7 +88,7 @@
 		]
 	]
   // content
-  block(inset: marign_size,fill: silver)[
+  block(inset: margin_size)[
     #columns(2)[
       #doc
     ]
