@@ -1,11 +1,10 @@
 #import "@preview/ctheorems:1.1.2": *
 #import "@preview/cuti:0.2.1": show-fakebold
 #import "./symbol.typ": *
+#import "@preview/equate:0.2.0": equate
 
-
-#let st = $space s.t. space $
 #let exercise = thmbox(
-  "id1",
+  "exercise",
   "Exercise",
   stroke: black + 1pt,
   base: none,           
@@ -20,7 +19,7 @@
 )
 
 #let definition = thmbox(
-	"id1",
+	"def",
 	"Definition",
 	fill: rgb("e8f8e8"),
 	base_level:1,
@@ -36,12 +35,31 @@
   padding: (y: 0em)
 )
 
+#let remark = thmbox(
+	"re",
+	"Remark",
+	// stroke: black,
+	base_level: 1,
+	padding: (y: 0em)
+)
+
+#let corollary = thmbox(
+	"cor",
+	"Corollary",
+	fill: rgb("e8e8f8"),
+	base_level: 1,
+	padding: (y: 0em)
+)
+
 #let discussion = thmbox(
 	"id1",
 	"Discussion",
 	base_level: 1,
-	stroke: black + 1pt,
+	breakable: true,
+	// stroke: black + 1pt,
 	padding: (y: 0em)
+).with(
+	inset: 0em
 )
 
 #let proof = thmproof("pkoof","Proof")
@@ -51,10 +69,10 @@
 	numbering: none
 )
 
-#let remark = thmplain("remark","Remark").with(
-	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
-	numbering: none
-)
+// #let remark = thmplain("remark","Remark").with(
+// 	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
+// 	numbering: none
+// )
 
 
 #let textb(it) = [
@@ -90,7 +108,11 @@
 	)
 }
 
-#let cir = $circle.stroked.tiny$
+#let numbered_eq(content) = math.equation(
+	block: true,
+	numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
+	content
+)
 
 
 #let makeTitle = [
@@ -144,14 +166,24 @@
 	
 	set text(
 		font: ("Times New Roman","DFKai-SB"),
+		top-edge: "ascender",
+		bottom-edge: "descender",
 	)
 
 	set heading(numbering: "1.")
+
 	show heading: it =>[
 	  #text(weight: "bold")[#it]
 		#v(0.65em)
 	]
 	
+	show heading.where(level: 1): it => {
+		counter(math.equation).update(0)
+	  text(weight: "bold")[#it]
+		v(0.65em)
+	}
+
+	set par(leading: 0.8em)
 	show math.equation: set text(weight: "extralight")
 
 	show math.equation.where(block: true): e => [
@@ -160,9 +192,9 @@
       #set align(center)
 			#set par(leading: 0.65em)
       #e
-	
 		]
 	]
+
 
 	set text(size: 11pt)
 	
