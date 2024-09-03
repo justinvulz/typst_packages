@@ -5,42 +5,57 @@
 
 #let st = $space s.t. space $
 #let exercise = thmbox(
-  "exercise",
+  "id1",
   "Exercise",
   stroke: black + 1pt,
   base: none,           
 ).with(numbering: "I") 
+
 #let theorem = thmbox(
-	"thm",
+	"id1",
 	"Theorem",
 	fill: rgb("e8e8f8"),
 	base_level: 1,
-	padding: (y: 0em))
+	padding: (y: 0em)
+)
 
 #let definition = thmbox(
-	"definition",
+	"id1",
 	"Definition",
 	fill: rgb("e8f8e8"),
 	base_level:1,
-	padding: (y: 0em))
-
-#let proof = thmproof("proof","Proof")
-
-#let example = thmplain("example","Example").with(
-	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
-	numbering: none)
-
-#let remark = thmplain("remark","Remark").with(
-	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
-	numbering: none)
+	padding: (y: 0em)
+)
 
 #let lemma = thmbox(
   "le",
   "Lemma",
   fill: rgb("e8e8f8"),
-    // stroke: black,
+  // stroke: black,
   base_level: 1,
-  padding: (y: 0em))
+  padding: (y: 0em)
+)
+
+#let discussion = thmbox(
+	"id1",
+	"Discussion",
+	base_level: 1,
+	stroke: black + 1pt,
+	padding: (y: 0em)
+)
+
+#let proof = thmproof("pkoof","Proof")
+
+#let example = thmplain("example","Example").with(
+	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
+	numbering: none
+)
+
+#let remark = thmplain("remark","Remark").with(
+	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
+	numbering: none
+)
+
 
 #let textb(it) = [
 	#set text(font: ("Times New Roman","DFKai-SB"))
@@ -52,6 +67,11 @@
 	#it
 ]
 
+#let heading-without-number(title) = [
+	#set heading(numbering: none)
+	= #title
+	#set heading(numbering: "1.")
+]
 // test
 
 #let al(itm) = {
@@ -81,22 +101,32 @@
 	#let author = context {
 		text(size: 14pt)[#state("author").get()]
 	}
+	#let subtitle = context {
+		text(16pt)[#state("subtitle").get()]
+	}
 	#set align(center)
 	#set par(leading: 2em)
 	
-	#title\
-	#author
+	#if title!= none [#title\ ]
+	#if subtitle!= none [#subtitle\ ]
+	#if author!= none [#author\ ]
 
 ]
 
 #state("title","")
 #state("author","")
 
-#let conf(_title,_author,doc) = {
+#let conf(
+	title:none,
+	subtitle:none,
+	author:none,
+	doc
+	) = {
   
 
-	set document(title: _title, author: _author)
-  
+	set document(title: title, author: author)
+	
+	
 	set page(
 		paper: "a4",
 		number-align: center,
@@ -104,8 +134,9 @@
 		// footer: rect(width: 100%, height: 100%,fill: silver),		
 	)
 
-	state("title").update(_title)
-	state("author").update(_author)
+	state("title").update(title)
+	state("author").update(author)
+	state("subtitle").update(subtitle)
 
 	
 	show: show-fakebold.with(reg-exp: "\p{script=Han}")
