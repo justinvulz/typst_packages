@@ -1,7 +1,6 @@
 #import "@preview/ctheorems:1.1.2": *
 #import "@preview/cuti:0.2.1": show-fakebold
 #import "./symbol.typ": *
-#import "@preview/equate:0.2.0": equate
 
 #let exercise = thmbox(
   "exercise",
@@ -108,11 +107,31 @@
 	)
 }
 
-#let numbered_eq(content) = math.equation(
-	block: true,
-	numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
-	content
-)
+// #let to-string(content) = {
+//   if content.has("text") {
+//     content.text
+//   } else if content.has("children") {
+//     content.children.map(to-string).join("")
+//   } else if content.has("body") {
+//     to-string(content.body)
+//   } else if content == [ ] {
+//     " "
+//   }
+// }
+
+#let numeq(content) = [
+	#context[
+		#let l = numbering(
+			"1.1",counter(heading).get().first(),
+			counter(math.equation).get().first()+1
+		)
+		#math.equation(
+			block: true,
+			numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
+			content
+		)#label(l)
+	]
+]
 
 
 #let makeTitle = [
@@ -185,7 +204,7 @@
 
 	set par(leading: 0.8em)
 	show math.equation: set text(weight: "extralight")
-
+	show math.equation: set block(spacing: 0em)
 	show math.equation.where(block: true): e => [
 		// #set block(fill: lime)
   	#block(width: 100%, inset: 0.3em)[
@@ -195,6 +214,22 @@
 		]
 	]
 
+	show ref: it => {
+		let eq = math.equation
+		let el = it.element
+
+		if el != none and el.func() == eq {
+    // Override equation references.
+		 	[Eq.]
+			numbering(
+				el.numbering,
+				..counter(eq).at(el.location())
+			)
+		} else {
+			// Other references as usual.
+			it
+		}
+	}
 
 	set text(size: 11pt)
 	
