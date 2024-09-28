@@ -61,7 +61,7 @@
 	inset: 0em
 )
 
-#let proof = thmproof("pkoof","Proof")
+#let proof = thmproof("pkoof","Proof").with(inset:0em)
 
 #let example = thmplain("example","Example").with(
 	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
@@ -119,19 +119,24 @@
 //   }
 // }
 
-#let numeq(content) = [
-	#context[
-		#let l = numbering(
-			"1.1",counter(heading).get().first(),
-			counter(math.equation).get().first()+1
-		)
-		#math.equation(
-			block: true,
-			numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
-			content
-		)#label(l)
-	]
-]
+// #let numeq(content) = [
+// 	#context[
+// 		#let l = numbering(
+// 			"1.1",counter(heading).get().first(),
+// 			counter(math.equation).get().first()+1
+// 		)
+// 		#math.equation(
+// 			block: true,
+// 			numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
+// 			content
+// 		)//#label(l)
+// 	]
+// ]
+#let numeq(content) = math.equation(
+	 block: true,
+  numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
+	content
+)
 
 
 #let makeTitle = [
@@ -193,13 +198,13 @@
 
 	show heading: it =>[
 	  #text(weight: "bold")[#it]
-		#v(0.65em)
+		// #v(0.65em)
 	]
 	
 	show heading.where(level: 1): it => {
 		counter(math.equation).update(0)
 	  text(weight: "bold")[#it]
-		v(0.65em)
+		// v(0.65em)
 	}
 
 	set par(leading: 0.8em)

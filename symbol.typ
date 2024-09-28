@@ -4,3 +4,4 @@
 #let st = $space s.t. space $
 #let cir = $circle.stroked.tiny$
 #let coinv(a,b) = $[#a,#b)$
+#let leq = $<=$
