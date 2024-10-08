@@ -5,3 +5,4 @@
 #let cir = $circle.stroked.tiny$
 #let coinv(a,b) = $[#a,#b)$
 #let leq = $<=$
+#let iso = $tilde.equiv$

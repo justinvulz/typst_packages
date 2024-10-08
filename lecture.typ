@@ -12,42 +12,62 @@
 #let theorem = thmbox(
 	"id1",
 	"Theorem",
-	fill: rgb("e8e8f8"),
+	// fill: rgb("e8e8f8"),
 	base_level: 1,
 	padding: (y: 0em)
+).with(
+  inset: 0em
 )
 
 #let definition = thmbox(
-	"def",
+	"id1",
 	"Definition",
-	fill: rgb("e8f8e8"),
+	// fill: rgb("e8f8e8"),
 	base_level:1,
 	padding: (y: 0em)
+).with(
+  inset: 0em
+)
+
+#let conjecture = thmbox(
+	"id1",
+	"Conjecture",
+	// fill: rgb("e8f8e8"),
+	base_level:1,
+	padding: (y: 0em)
+).with(
+  inset: 0em
 )
 
 #let lemma = thmbox(
-  "le",
+  "id1",
   "Lemma",
   fill: rgb("e8e8f8"),
   // stroke: black,
   base_level: 1,
   padding: (y: 0em)
+).with(
+  inset: 0em
 )
 
 #let remark = thmbox(
-	"re",
+	"id1",
 	"Remark",
 	// stroke: black,
 	base_level: 1,
 	padding: (y: 0em)
+).with(
+  inset: 0em
 )
 
 #let corollary = thmbox(
-	"cor",
+	"id1",
 	"Corollary",
-	fill: rgb("e8e8f8"),
+	// fill: rgb("e8e8f8"),
 	base_level: 1,
 	padding: (y: 0em)
+).with(
+  inset: 0em
 )
 
 #let discussion = thmbox(
@@ -64,7 +84,7 @@
 #let proof = thmproof("pkoof","Proof").with(inset:0em)
 
 #let example = thmplain("example","Example").with(
-	inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
+	inset: (top: 0.5em, bottom: 0.5em),//, left: 1em, right: 1em),
 	numbering: none
 )
 
@@ -192,6 +212,7 @@
 		font: ("Times New Roman","DFKai-SB"),
 		top-edge: "ascender",
 		bottom-edge: "descender",
+    size: 12pt
 	)
 
 	set heading(numbering: "1.")
