@@ -42,7 +42,7 @@
 #let lemma = thmbox(
   "id1",
   "Lemma",
-  fill: rgb("e8e8f8"),
+  // fill: rgb("e8e8f8"),
   // stroke: black,
   base_level: 1,
   padding: (y: 0em)
@@ -246,7 +246,7 @@
 
 		if el != none and el.func() == eq {
     // Override equation references.
-		 	[Eq.]
+		 	[Eq. ]
 			numbering(
 				el.numbering,
 				..counter(eq).at(el.location())
