@@ -1,6 +1,6 @@
 
 #import "@preview/ctheorems:1.1.3": *
-#import "@preview/cuti:0.2.1": show-fakebold
+#import "@preview/cuti:0.3.0": show-fakebold
 #import "./symbol.typ": *
 
 #let exercise = thmbox(
@@ -225,13 +225,13 @@
   show: thmrules
   
   set text(
-    font: ("New Computer Modern","Noto Sans"),
+    font: ("New Computer Modern","Noto Sans","Noto CJK TC"),
     top-edge: "ascender",
     bottom-edge: "descender",
   )
 
-  // set heading(numbering: "i.")
-  set heading(numbering: "あ.")
+  set heading(numbering: "1.")
+  // set heading(numbering: "あ.")
 
   show heading: it =>[
     #text(weight: "bold")[#it]
@@ -240,7 +240,7 @@
   
   show heading.where(level: 1): it => {
     counter(math.equation).update(0)
-    text(weight: "bold")[#it]
+    // text(weight: "bold")[#it]
     // v(0.65em)
   }
 
