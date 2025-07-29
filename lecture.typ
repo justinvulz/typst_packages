@@ -1,4 +1,5 @@
-#import "@preview/ctheorems:1.1.2": *
+
+#import "@preview/ctheorems:1.1.3": *
 #import "@preview/cuti:0.2.1": show-fakebold
 #import "./symbol.typ": *
 
@@ -14,6 +15,16 @@
   "Theorem",
   // fill: rgb("e8e8f8"),
   base_level: 1,
+  padding: (y: 0em)
+).with(
+  inset: 0em
+)
+
+#let property= thmbox(
+  "id1",
+  "Property",
+  // fill: rgb("e8f8e8"),
+  base_level:2,
   padding: (y: 0em)
 ).with(
   inset: 0em
@@ -94,13 +105,18 @@
 // )
 
 
+#let scr(it) = text(
+  features: ("ss01",),
+  box($cal(it)$),
+)
+
 #let textb(it) = [
-  #set text(font: ("Times New Roman","DFKai-SB"))
+  #set text(font: ("New Computer Modern","DFKai-SB"))
   #text(weight: "bold")[#it]
 ]
 
 #let textr(it) = [
-  #set text(font: ("Times New Roman","DFKai-SB"))
+  #set text(font: ("New Computer Modern","DFKai-SB"))
   #it
 ]
 
@@ -153,7 +169,7 @@
 //  ]
 // ]
 #let numeq(content) = math.equation(
-   block: true,
+  block: true,
   numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
   content
 )
@@ -209,12 +225,13 @@
   show: thmrules
   
   set text(
-    font: ("Times New Roman","DFKai-SB"),
+    font: ("New Computer Modern","Noto Sans"),
     top-edge: "ascender",
     bottom-edge: "descender",
   )
 
-  set heading(numbering: "1.")
+  // set heading(numbering: "i.")
+  set heading(numbering: "あ.")
 
   show heading: it =>[
     #text(weight: "bold")[#it]
@@ -229,9 +246,7 @@
 
   set par(leading: 0.8em)
   show math.equation: set text(weight: "extralight")
-  show math.equation: set block(spacing: 0em)
   show math.equation.where(block: true): e => [
-    // #set block(fill: lime)
     #block(width: 100%, inset: 0.3em)[
       #set align(center)
       #set par(leading: 0.65em)
@@ -245,7 +260,6 @@
 
     if el != none and el.func() == eq {
     // Override equation references.
-      [Eq. ]
       numbering(
         el.numbering,
         ..counter(eq).at(el.location())
