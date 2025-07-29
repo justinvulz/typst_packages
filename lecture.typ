@@ -225,9 +225,10 @@
   show: thmrules
   
   set text(
-    font: ("New Computer Modern","Noto Sans","Noto CJK TC"),
+    font: ("New Computer Modern","Noto Sans","Source Han Sans"),
     top-edge: "ascender",
     bottom-edge: "descender",
+    lang: "zh"
   )
 
   set heading(numbering: "1.")
@@ -240,8 +241,8 @@
   
   show heading.where(level: 1): it => {
     counter(math.equation).update(0)
-    // text(weight: "bold")[#it]
-    // v(0.65em)
+    text(weight: "bold")[#it]
+    v(0.65em)
   }
 
   set par(leading: 0.8em)
