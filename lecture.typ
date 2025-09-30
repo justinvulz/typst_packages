@@ -277,6 +277,8 @@
   
   set enum(numbering: al("1."))
 
+  set math.cases(gap: 1em)
+
   doc
 }
 
