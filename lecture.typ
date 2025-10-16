@@ -279,6 +279,8 @@
 
   set math.cases(gap: 1em)
 
+  show math.equation.where(block: false): box
+
   doc
 }
 
