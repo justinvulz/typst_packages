@@ -7,3 +7,4 @@
 #let ocinv(a,b) = $(#a,#b]$
 #let leq = $<=$
 #let iso = $tilde.equiv$
+#let dval(ff,aa) = math.attach(math.lr($ff |$),b: aa)
