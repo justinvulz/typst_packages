@@ -1,6 +1,6 @@
-
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/cuti:0.3.0": show-fakebold
+#import "@preview/equate:0.3.2": equate
 #import "./symbol.typ": *
 
 #let exercise = thmbox(
@@ -228,7 +228,7 @@
     font: ("New Computer Modern","Noto Sans","Source Han Sans"),
     top-edge: "ascender",
     bottom-edge: "descender",
-    lang: "zh"
+    lang: "en"
   )
 
   set heading(numbering: "1.")
@@ -247,13 +247,17 @@
 
   set par(leading: 0.8em)
   show math.equation: set text(weight: "extralight")
-  show math.equation.where(block: true): e => [
-    #block(width: 100%, inset: 0.3em)[
-      #set align(center)
-      #set par(leading: 0.65em)
-      #e
-    ]
-  ]
+  // show math.equation.where(block: true): e => [
+  //   #block(width: 100%, inset: 0.3em)[
+  //     #set align(center)
+  //     #set par(leading: 0.65em)
+  //     #e
+  //   ]
+  // ]
+
+  // set math.equation(numbering: "(1.1)")
+
+  // show: equate.with(breakable: true, sub-numbering: true,number-mode: "label")
 
   show ref: it => {
     let eq = math.equation

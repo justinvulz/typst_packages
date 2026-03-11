@@ -8,3 +8,4 @@
 #let leq = $<=$
 #let iso = $tilde.equiv$
 #let dval(ff,aa) = math.attach(math.lr($ff |$),b: aa)
+#let tensor = $times.o$
