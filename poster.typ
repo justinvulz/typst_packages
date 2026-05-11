@@ -3,7 +3,7 @@
 #import fletcher.shapes:circle
 
 #let margin_size = 2cm
-#let body_font_size = 30pt
+#let body_font_size = 32pt
 
 
 #let conf(
@@ -24,7 +24,7 @@
   set text(size:body_font_size)
   show stack: set block(spacing: 2em)
   show grid: set block(spacing: 2em)
-  show par: set block(spacing: 1em)
+  set par(spacing: 1em)
   show block: set block(spacing: 1em)
   show figure: set block(spacing: 2em) 
   show list: set block(spacing: 1em)
@@ -37,7 +37,7 @@
   )[
     #align(center+horizon)[
       #set text(fill: white)
-      #show par: set block(spacing: 0.5em)
+      #set par(spacing: 0.5em)
       #text(size:85pt)[
         *#title*
       ]
@@ -47,7 +47,7 @@
       ]
       #if (advisor != none){
         text(size: 56pt)[
-          ,  *Advisor: #advisor*
+          ,  *Advisor : #advisor*
         ]
       }
     ]
@@ -58,10 +58,11 @@
     }
   ]
   // block for heading
+  set heading(numbering: "1.")
   show heading.where(level: 1): h => {
-    align(center)[
-      #block(width: 100%,fill: main_color,inset: 0.45em)[
-        #text(size: 36pt,fill:white)[
+    align(left)[
+      #block(width: 100%,inset: 0.1em)[
+        #text(size: 45pt,fill:main_color)[
           *#h*
         ]
       ]
@@ -69,9 +70,9 @@
     ]
   }
   show heading.where(level:2): h => {
-    align(center)[
-      #block(width: 100%,fill: main_color,inset: 0.45em)[
-        #text(size: 30pt,fill:white)[
+    align(left)[
+      #block(width: 100%, inset: 0.1em)[
+        #text(size: 45pt, fill : main_color)[
           *#h*
         ]
       ]

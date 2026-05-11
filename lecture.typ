@@ -225,7 +225,7 @@
   show: thmrules
   
   set text(
-    font: ("New Computer Modern","Noto Sans","Source Han Sans"),
+    font: ("New Computer Modern","Source Han Sans"),
     top-edge: "ascender",
     bottom-edge: "descender",
     lang: "en"
