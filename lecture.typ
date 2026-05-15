@@ -2,107 +2,9 @@
 #import "@preview/cuti:0.3.0": show-fakebold
 #import "@preview/equate:0.3.2": equate
 #import "./symbol.typ": *
+#import "./box.typ": *
 
-#let exercise = thmbox(
-  "exercise",
-  "Exercise",
-  stroke: black + 1pt,
-  base: none,           
-).with(numbering: "I") 
 
-#let theorem = thmbox(
-  "id1",
-  "Theorem",
-  // fill: rgb("e8e8f8"),
-  base_level: 1,
-  padding: (y: 0em)
-).with(
-  inset: 0em
-)
-
-#let property= thmbox(
-  "id1",
-  "Property",
-  // fill: rgb("e8f8e8"),
-  base_level:2,
-  padding: (y: 0em)
-).with(
-  inset: 0em
-)
-
-#let definition = thmbox(
-  "id1",
-  "Definition",
-  // fill: rgb("e8f8e8"),
-  base_level:1,
-  padding: (y: 0em)
-).with(
-  inset: 0em
-)
-
-#let conjecture = thmbox(
-  "id1",
-  "Conjecture",
-  // fill: rgb("e8f8e8"),
-  base_level:1,
-  padding: (y: 0em)
-).with(
-  inset: 0em
-)
-
-#let lemma = thmbox(
-  "id1",
-  "Lemma",
-  // fill: rgb("e8e8f8"),
-  // stroke: black,
-  base_level: 1,
-  padding: (y: 0em)
-).with(
-  inset: 0em
-)
-
-#let remark = thmbox(
-  "id1",
-  "Remark",
-  // stroke: black,
-  base_level: 1,
-  padding: (y: 0em)
-).with(
-  inset: 0em
-)
-
-#let corollary = thmbox(
-  "id1",
-  "Corollary",
-  // fill: rgb("e8e8f8"),
-  base_level: 1,
-  padding: (y: 0em)
-).with(
-  inset: 0em
-)
-
-#let discussion = thmbox(
-  "id1",
-  "Discussion",
-  base_level: 1,
-  breakable: true,
-  // stroke: black + 1pt,
-  padding: (y: 0em)
-).with(
-  inset: 0em
-)
-
-#let proof = thmproof("pkoof","Proof").with(inset:0em)
-
-#let example = thmplain("example","Example").with(
-  inset: (top: 0.5em, bottom: 0.5em),//, left: 1em, right: 1em),
-  numbering: none
-)
-
-// #let remark = thmplain("remark","Remark").with(
-//  inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 1em),
-//  numbering: none
-// )
 
 
 #let scr(it) = text(
@@ -143,36 +45,6 @@
   )
 }
 
-// #let to-string(content) = {
-//   if content.has("text") {
-//     content.text
-//   } else if content.has("children") {
-//     content.children.map(to-string).join("")
-//   } else if content.has("body") {
-//     to-string(content.body)
-//   } else if content == [ ] {
-//     " "
-//   }
-// }
-
-// #let numeq(content) = [
-//  #context[
-//    #let l = numbering(
-//      "1.1",counter(heading).get().first(),
-//      counter(math.equation).get().first()+1
-//    )
-//    #math.equation(
-//      block: true,
-//      numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
-//      content
-//    )//#label(l)
-//  ]
-// ]
-#let numeq(content) = math.equation(
-  block: true,
-  numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
-  content
-)
 
 
 #let makeTitle = [
@@ -247,33 +119,31 @@
 
   set par(leading: 0.8em)
   show math.equation: set text(weight: "extralight")
-  // show math.equation.where(block: true): e => [
-  //   #block(width: 100%, inset: 0.3em)[
-  //     #set align(center)
-  //     #set par(leading: 0.65em)
-  //     #e
-  //   ]
-  // ]
-
-  // set math.equation(numbering: "(1.1)")
-
-  // show: equate.with(breakable: true, sub-numbering: true,number-mode: "label")
-
-  show ref: it => {
-    let eq = math.equation
-    let el = it.element
-
-    if el != none and el.func() == eq {
-    // Override equation references.
-      numbering(
-        el.numbering,
-        ..counter(eq).at(el.location())
-      )
+  show math.equation:it => {
+    if it.fields().keys().contains("label"){
+        math.equation(
+          block: true,
+          numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
+          it
+        )
     } else {
-      // Other references as usual.
       it
     }
   }
+
+
+  show ref: it => {
+    let el = it.element
+    if el != none and el.func() == math.equation {
+      link(el.location(), numbering(
+        "(1.1)",
+        counter(heading).at(el.location()).first(),
+        counter(math.equation).at(el.location()).first() + 1
+      ))
+    } else {
+      it
+    }
+  } 
 
   set text(size: 11pt)
   

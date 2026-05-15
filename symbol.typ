@@ -10,3 +10,4 @@
 #let dval(ff,aa) = math.attach(math.lr($ff |$),b: aa)
 #let tensor = $times.o$
 #let wedge = $and$
+#let pair(aa,bb) =  $chevron.l aa ,bb chevron.r$
