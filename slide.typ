@@ -3,6 +3,7 @@
 #import themes.university: *
 #import "@preview/numbly:0.1.0": numbly
 #import "./symbol.typ":*
+#import "./utils.typ":*
 
 #let exercise = thmbox(
   "exercise",
@@ -117,6 +118,7 @@
     ),
   )
 
+  show: math-ref
   show: thmrules
   // set document(title: title, author: author)
   set heading(numbering: numbly("{1}.", default: "1.1"))

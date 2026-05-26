@@ -3,6 +3,7 @@
 #import "@preview/equate:0.3.2": equate
 #import "./symbol.typ": *
 #import "./box.typ": *
+#import "./utils.typ":*
 
 
 
@@ -95,6 +96,7 @@
   
   show: show-fakebold.with(reg-exp: "\p{script=Han}")
   show: thmrules
+  show: math-ref
   
   set text(
     font: ("New Computer Modern","Source Han Sans"),
@@ -119,31 +121,6 @@
 
   set par(leading: 0.8em)
   show math.equation: set text(weight: "extralight")
-  show math.equation:it => {
-    if it.fields().keys().contains("label"){
-        math.equation(
-          block: true,
-          numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
-          it
-        )
-    } else {
-      it
-    }
-  }
-
-
-  show ref: it => {
-    let el = it.element
-    if el != none and el.func() == math.equation {
-      link(el.location(), numbering(
-        "(1.1)",
-        counter(heading).at(el.location()).first(),
-        counter(math.equation).at(el.location()).first() + 1
-      ))
-    } else {
-      it
-    }
-  } 
 
   set text(size: 11pt)
   
@@ -153,7 +130,6 @@
 
   set math.cases(gap: 1em)
 
-  // show math.equation.where(block: false): box
 
   doc
 }

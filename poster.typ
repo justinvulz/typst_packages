@@ -1,6 +1,7 @@
 #import "@preview/cetz:0.2.2"
 #import "@preview/fletcher:0.4.5" as fletcher: diagram,node,edge
 #import "symbol.typ":*
+#import "./utils.typ":*
 #import fletcher.shapes:circle
 
 #let margin_size = 2cm
@@ -55,10 +56,10 @@
 
   set text(size:body_font_size)
   set par(spacing: 1em)
-  show stack: set block(spacing: 2em)
-  show grid: set block(spacing: 2em)
+  show stack: set block(spacing: 1em)
+  show grid: set block(spacing: 1em)
   // show block: set block(spacing: 0.5em)
-  show figure: set block(spacing: 2em) 
+  show figure: set block(spacing: 1em) 
   show list: set block(spacing: 1em)
   // title
   mktitle(title,advisor,author,main_color,logo)
@@ -86,31 +87,8 @@
 	
 		]
 	]
-  show math.equation:it => {
-    if it.fields().keys().contains("label"){
-        math.equation(
-          block: true,
-          numbering: num => numbering("(1.1)", counter(heading).get().first(), num),
-          it
-        )
-    } else {
-      it
-    }
-  }
-
-
-  show ref: it => {
-    let el = it.element
-    if el != none and el.func() == math.equation {
-      link(el.location(), numbering(
-        "(1.1)",
-        counter(heading).at(el.location()).first(),
-        counter(math.equation).at(el.location()).first() + 1
-      ))
-    } else {
-      it
-    }
-  } 
+  show: math-ref
+   
   // content
   block(inset: margin_size)[
     #columns(2)[
