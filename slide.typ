@@ -1,5 +1,5 @@
 #import "@preview/ctheorems:1.1.3": *
-#import "@preview/touying:0.6.1": *
+#import "@preview/touying:0.7.3": *
 #import themes.university: *
 #import "@preview/numbly:0.1.0": numbly
 #import "./symbol.typ":*
@@ -109,23 +109,39 @@
 ) = {
   show: university-theme.with(
     aspect-ratio: "16-9",
+    header-right: none,
+    header: self => pad(x: -2.5em,top:-0.5em, block(
+      fill: self.colors.primary,
+      inset: (x: 2.5em, y: 0.6em),
+      width: 100% + 5em,
+      text(fill: white, weight: "bold",
+        utils.display-current-heading(depth: self.slide-level)),
+    )),
+    config-page(
+      margin:(x:2em,y:2.9em)
+      
+    ),
     config-info(
+
       title: title,
       subtitle: subtitle,
       author: author,
       date: datetime.today(),
       // institution: [Institution],
     ),
-  )
+    config-methods(init: (self: none, body) => {
+      show: math-ref
+      show: thmrules
+      set heading(numbering: numbly("{1}.", default: "1.1"))
+      set text(size: 21pt)
+      body
+    }),
 
-  show: math-ref
-  show: thmrules
-  // set document(title: title, author: author)
-  set heading(numbering: numbly("{1}.", default: "1.1"))
+  )
 
   title-slide()
 
-  outline()
+  // outline()
   doc 
 }
 
