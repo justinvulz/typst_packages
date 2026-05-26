@@ -121,7 +121,7 @@
 
   set par(leading: 0.8em)
   show math.equation: set text(weight: "extralight")
-  set table( stroke: (x, y) => if y == 0 { (top: 1pt, bottom: 0.5pt) } else if y == 3 { (bottom: 1pt) } else { none }, )
+  set table( stroke: (x, y) => if y == 0 { (top: 1pt, bottom: 0.5pt) }  else { none },)
   set text(size: 11pt)
   
   set list(marker: listal)
