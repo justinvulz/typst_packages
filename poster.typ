@@ -67,6 +67,7 @@
   // block for heading
   set heading(numbering: "1.")
   show heading.where(level: 1): h => {
+    counter(math.equation).update(0)
     align(left)[
       #block(width: 100%,inset: 0.1em,above: 1em,below:0em)[
         #text(size: 45pt,fill:main_color)[
