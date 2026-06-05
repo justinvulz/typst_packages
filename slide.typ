@@ -136,7 +136,7 @@
       set text(size: 21pt)
       body
     }),
-
+    config-common(new-section-slide-fn: none),
   )
 
   title-slide()

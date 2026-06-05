@@ -114,7 +114,7 @@
   ]
   
   show heading.where(level: 1): it => {
-    counter(math.equation).update(0)
+		// #set block(fill: lime)
     text(weight: "bold")[#it]
     v(0.65em)
   }
