@@ -7,14 +7,15 @@
 #let margin_size = 2cm
 #let body_font_size = 32pt
 
-#let mktitle(title,advisor,author,main_color,logo) = {
+#let mktitle(title,advisor,author,main_color,logo_right,logo_left) = {
   block(
     width: 100%,
     fill: main_color, 
-    inset:margin_size,
-
   )[
-    #align(center+horizon)[
+
+    #align(center+horizon,block(
+    inset: margin_size,
+    [
       #set text(fill: white)
       #set par(spacing: 0.5em)
       #text(size:85pt)[
@@ -30,20 +31,24 @@
         ]
       }
     ]
-    #if (logo != none){
-      place(top+right)[
-        #image(logo, width:  6em)
-      ]
+      
+    ))
+
+    #if (logo_right != none){
+      place(horizon+right,block(logo_right,inset: margin_size))
+    }
+    #if (logo_left!= none){
+      place(horizon+left,block(logo_left,inset: margin_size))
     }
   ]
-  
 }
 
 #let conf(
   title,
   author,
   advisor: none,
-  logo: none,
+  logo_left: none,
+  logo_right: none,
   main_color: rgb(35,80,120),
   doc
 ) = {
@@ -62,7 +67,7 @@
   show figure: set block(spacing: 1em) 
   show list: set block(spacing: 1em)
   // title
-  mktitle(title,advisor,author,main_color,logo)
+  mktitle(title,advisor,author,main_color,logo_right,logo_left)
    
   // block for heading
   set heading(numbering: "1.")
