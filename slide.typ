@@ -105,6 +105,8 @@
   title:none,
   subtitle:none,
   author:none,
+  title-full:none,
+  author-full:none,
   doc
 ) = {
   show: university-theme.with(
@@ -139,7 +141,7 @@
     config-common(new-section-slide-fn: none),
   )
 
-  title-slide()
+  title-slide(config: config-info(title:title-full, author:author-full))
 
   // outline()
   doc 
