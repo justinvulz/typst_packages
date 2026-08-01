@@ -91,8 +91,24 @@
 
 #let proof = thmproof("pkoof","Proof").with(inset:0em)
 
-#let example = thmplain("example","Example").with(
-  inset: (top: 0.5em, bottom: 0.5em),//, left: 1em, right: 1em),
-  numbering: none
-)
 
+#let example = thmbox(
+  "id1",
+  "Example",
+  base_level: 1,
+  padding: (y: 0em)
+).with(inset: 0em)
+
+#let proposition = thmbox(
+  "id1",
+  "Proposition",
+  base_level: 1,
+  padding: (y: 0em)
+).with(inset: 0em)
+
+#let hypothesis = thmbox(
+  "id1",
+  "Hypothesis",
+  base_level: 1,
+  padding: (y: 0em)
+).with(inset: 0em)
