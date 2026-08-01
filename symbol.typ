@@ -11,3 +11,7 @@
 #let tensor = $times.o$
 #let wedge = $and$
 #let pair(aa,bb) =  $chevron.l aa ,bb chevron.r$
+#let diam = math.op("diam")
+#let supp = math.op("supp")
+#let ObsDiam = math.op("ObsDiam")
+#let cl(A) = $overline(#A)$
