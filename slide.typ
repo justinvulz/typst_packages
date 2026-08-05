@@ -94,6 +94,25 @@
   inset: 1em
 )
 
+#let proposition = thmbox(
+  "id1",
+  "Proposition",
+  base_level: 1,
+  padding: (y: 0em)
+).with(
+  inset: 1em
+)
+
+#let hypothesis = thmbox(
+  "id1",
+  "Hypothesis",
+  fill: rgb("f8f0e8"),
+  base_level: 1,
+  padding: (y: 0em)
+).with(
+  inset: 1em
+)
+
 #let proof = thmproof("pkoof","Proof").with(inset:0em)
 
 #let example = thmplain("example","Example").with(
@@ -107,6 +126,7 @@
   author:none,
   title-full:none,
   author-full:none,
+  size:21pt,
   doc
 ) = {
   show: university-theme.with(
@@ -135,10 +155,11 @@
       show: math-ref
       show: thmrules
       set heading(numbering: numbly("{1}.", default: "1.1"))
-      set text(size: 21pt)
+      set text(size: size)
       body
     }),
-    config-common(new-section-slide-fn: none),
+    // `---` stays an em dash; it does not divide slides
+    config-common(new-section-slide-fn: none, horizontal-line-to-pagebreak: false),
   )
 
   title-slide(config: config-info(title:title-full, author:author-full))
