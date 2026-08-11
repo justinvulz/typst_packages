@@ -17,50 +17,46 @@
   "Theorem",
   fill: rgb("e8e8f8"),
   base_level: 1,
-  padding: (y: 0em)
+  padding: (x:-0.5em ,y: 0em)
 ).with(
-  inset: 1em
+  inset: 0.5em
 )
-
 #let property= thmbox(
   "id1",
   "Property",
   // fill: rgb("e8f8e8"),
   base_level:2,
-  padding: (y: 0em)
+  padding: (x:-0.5em ,y: 0em)
 ).with(
-  inset: 1em
+  inset: 0.5em
 )
-
 #let definition = thmbox(
   "id1",
   "Definition",
   fill: rgb("e8f8e8"),
   base_level:1,
-  padding: (y: 0em)
+  padding: (x:-0.5em ,y: 0em)
 ).with(
-  inset: 1em
+  inset: 0.5em
 )
-
 #let conjecture = thmbox(
   "id1",
   "Conjecture",
   // fill: rgb("e8f8e8"),
   base_level:1,
-  padding: (y: 0em)
+  padding: (x:-0.5em ,y: 0em)
 ).with(
-  inset: 1em
-)
-
+  inset: 0.5em
+) 
 #let lemma = thmbox(
   "id1",
   "Lemma",
-  // fill: rgb("e8e8f8"),
+  fill: rgb("e8e8f8"),
   // stroke: black,
   base_level: 1,
-  padding: (y: 0em)
+  padding: (x:-0.5em ,y: 0em)
 ).with(
-  inset: 1em
+  inset: 0.5em
 )
 
 #let remark = thmbox(
@@ -68,19 +64,18 @@
   "Remark",
   // stroke: black,
   base_level: 1,
-  padding: (y: 0em)
+  padding: (x:-0.5em ,y: 0em)
 ).with(
-  inset: 1em
+  inset: 0.5em
 )
-
 #let corollary = thmbox(
   "id1",
   "Corollary",
   // fill: rgb("e8e8f8"),
   base_level: 1,
-  padding: (y: 0em)
+  padding: (x:-0.5em ,y: 0em)
 ).with(
-  inset: 1em
+  inset: 0.5em
 )
 
 #let discussion = thmbox(
@@ -140,7 +135,7 @@
         utils.display-current-heading(depth: self.slide-level)),
     )),
     config-page(
-      margin:(x:2em,y:2.9em)
+      margin:(x:2em,top:2.9em,bottom: 2em)
       
     ),
     config-info(
@@ -156,6 +151,7 @@
       show: thmrules
       set heading(numbering: numbly("{1}.", default: "1.1"))
       set text(size: size)
+      set par(spacing: 1em)
       body
     }),
     // `---` stays an em dash; it does not divide slides
@@ -165,6 +161,7 @@
   title-slide(config: config-info(title:title-full, author:author-full))
 
   // outline()
+
   doc 
 }
 
