@@ -126,7 +126,8 @@ typst watch notes.typ        # live rebuild
 
 Always compile after writing and report errors.
 
-**Known breakage:** the pinned `cetz:0.2.2` and `fletcher:0.4.5` (imported by
-`poster.typ` / `drawimg.typ`) fail on the installed Typst 0.15.1 with
-`unknown variable: style`. Importing is fine; calling `cetz.canvas` or `diagram` errors.
-Bump those versions before using them for drawings.
+**Known breakage:** `poster.typ` still pins `cetz:0.2.2` / `fletcher:0.4.5`, which fail on
+Typst 0.15.1 with `unknown variable: style` — importing is fine, but calling `cetz.canvas`
+or `diagram` inside a poster errors. `drawimg.typ` is on cetz 0.5.2 / fletcher 0.5.8 and
+draws fine, so build figures there and `image()` them into the poster, or bump the two
+versions at the top of `poster.typ`.
