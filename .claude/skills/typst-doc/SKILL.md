@@ -29,6 +29,21 @@ Each template exposes a `conf` show-rule plus theorem environments and math shor
 
 If `typst_packages/` is missing from the project, clone it before writing the document.
 
+## Keep the content concise
+
+Write the document the way the user would: plain and to the point. The template already
+handles the styling — do not decorate on top of it.
+
+- Say the thing once. No filler intros, no summary sections restating what was said, no
+  "In this section we will...".
+- Use the template's own constructs (`#theorem`, `#definition`, `= `) instead of hand-built
+  `#block`/`#rect`/colored boxes.
+- No extra `#set`/`#show` rules, custom colors, fonts, or spacing tweaks unless asked —
+  they fight the template.
+- Slides: a handful of lines per slide, not paragraphs.
+- Only fill in content the user actually gave you. Leave a short `// TODO` where they need
+  to supply something rather than inventing filler text.
+
 ## Skeletons
 
 ### lecture.typ
@@ -116,6 +131,9 @@ Page is measured to the content — use it to export a single figure for embeddi
   `cir`, `cl(A)`, `pair(a,b)`, `dval(f,a)`, `coinv(a,b)`, `ocinv(a,b)`, `diam`, `supp`.
 - **lecture.typ extras**: `scr(X)` script letters, `textb`/`textr` for CJK bold/regular,
   `heading-without-number[Title]`.
+- **Drawing**: `poster.typ` and `drawimg.typ` re-export `cetz` (0.5.2) and fletcher's
+  `diagram` / `node` / `edge` (0.5.8), ready to use. `lecture.typ` and `slide.typ` do not —
+  import them yourself, or draw in a `drawimg.typ` file and `image()` the PDF in.
 
 ## Compile
 
@@ -125,9 +143,3 @@ typst watch notes.typ        # live rebuild
 ```
 
 Always compile after writing and report errors.
-
-**Known breakage:** `poster.typ` still pins `cetz:0.2.2` / `fletcher:0.4.5`, which fail on
-Typst 0.15.1 with `unknown variable: style` — importing is fine, but calling `cetz.canvas`
-or `diagram` inside a poster errors. `drawimg.typ` is on cetz 0.5.2 / fletcher 0.5.8 and
-draws fine, so build figures there and `image()` them into the poster, or bump the two
-versions at the top of `poster.typ`.
