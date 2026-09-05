@@ -1,5 +1,5 @@
-#import "@preview/cetz:0.2.2"
-#import "@preview/fletcher:0.4.5" as fletcher: diagram,node,edge
+#import "@preview/cetz:0.5.2"
+#import "@preview/fletcher:0.5.8" as fletcher: diagram,node,edge
 #import fletcher.shapes:circle
 
 #let margin_size = 2cm

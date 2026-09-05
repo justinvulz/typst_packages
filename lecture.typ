@@ -1,6 +1,5 @@
 #import "@preview/ctheorems:1.1.3": *
-#import "@preview/cuti:0.3.0": show-fakebold
-#import "@preview/equate:0.3.2": equate
+#import "@preview/cuti:0.4.0": show-fakebold
 #import "./symbol.typ": *
 #import "./box.typ": *
 #import "./utils.typ":*
